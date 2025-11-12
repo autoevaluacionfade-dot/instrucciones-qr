@@ -87,7 +87,7 @@
       border-radius: 8px;
       font-size: 1rem;
       transition: background 0.3s ease;
-      margin-top: 15px;
+      margin-top: 10px;
       cursor: pointer;
     }
 
@@ -160,17 +160,18 @@
         <strong class="copy-phone" onclick="copyPhone()">952674349</strong>.
       </li>
       <li>Monto a abonar: <strong>S/. 60.00</strong>.</li>
+      <li>Después de realizar el pago, debe enviar el comprobante por correo.</li>
     </ol>
 
-    <h2>🧾 Envío de Comprobante</h2>
+    <h2>🧾 Envío de Comprobante (solo si pagó por Yape)</h2>
     <ol>
       <li>Incluya en el mensaje: <strong>nombres y apellidos</strong>, su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> (si es externo).</li>
       <li>Adjunte la <strong>foto o captura del comprobante de pago</strong>.</li>
-      <li>Envíe toda esta información al correo: <strong>jornadassegundas@gmail.com</strong>.</li>
+      <li>Envíe la información al correo: <strong>jornadassegundas@gmail.com</strong>.</li>
     </ol>
 
-    <!-- Botón universal -->
-    <button class="email-btn" onclick="openEmail()">📧 Redactar correo de envío</button>
+    <!-- Botón universal para redactar correo -->
+    <button class="email-btn" onclick="openEmail()">📧 Redactar correo para enviar comprobante</button>
 
     <footer>© 2025 Universidad Privada de Tacna</footer>
 
@@ -190,32 +191,34 @@
     }
 
     function openEmail() {
-      const subject = encodeURIComponent("Constancia de Pago - Jornadas de Derecho Civil");
-      const body = encodeURIComponent(
-        "Estimados,\n\nAdjunto mi comprobante de pago.\n\n🔹 Nombre y Apellido:\n🔹 Código Universitario o DNI:\n\n(Adjuntar aquí la captura o foto del pago antes de enviar)\n\nSaludos cordiales."
-      );
       const email = "jornadassegundas@gmail.com";
+      const subject = encodeURIComponent("Comprobante de pago - Jornadas de Derecho Civil");
+      const body = encodeURIComponent(
+        "Estimados,\n\nAdjunto la captura de mi comprobante de pago por Yape.\n\n" +
+        "🔹 Nombre y Apellido:\n" +
+        "🔹 Código Universitario o DNI:\n\n" +
+        "(Adjuntar la imagen del pago antes de enviar)\n\nSaludos cordiales."
+      );
 
-      // Detectar si es móvil o escritorio
+      // Detectar si es móvil
       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
       if (isMobile) {
-        // Móviles abren directamente la app de correo
+        // En móviles, abre el cliente de correo directamente
         window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
       } else {
-        // Escritorio: intentar abrir Gmail web
+        // En PC, intentar abrir Gmail Web, y si no funciona, usa mailto
         const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
-        const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${email}&subject=${subject}&body=${body}`;
-        
-        // Verificar si Gmail está disponible (si no, usar mailto)
         const win = window.open(gmailUrl, "_blank");
+
         setTimeout(() => {
           if (!win || win.closed || typeof win.closed === "undefined") {
             window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
           }
-        }, 1500);
+        }, 1200);
       }
     }
   </script>
 </body>
 </html>
+

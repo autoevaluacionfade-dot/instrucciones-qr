@@ -55,7 +55,6 @@
       color: #000;
     }
 
-    /* Teléfono clickeable */
     .copy-phone {
       color: #0066cc;
       cursor: pointer;
@@ -65,6 +64,24 @@
 
     .copy-phone:hover {
       color: #004c99;
+    }
+
+    /* Botón de correo */
+    .email-btn {
+      display: inline-block;
+      background-color: #1976d2;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      margin-top: 15px;
+    }
+
+    .email-btn:hover {
+      background-color: #0d47a1;
     }
 
     footer {
@@ -95,7 +112,6 @@
       opacity: 1;
     }
 
-    /* Responsividad */
     @media (max-width: 600px) {
       .container {
         padding: 20px;
@@ -108,6 +124,11 @@
       li {
         font-size: 1rem;
       }
+
+      .email-btn {
+        font-size: 0.95rem;
+        padding: 10px 18px;
+      }
     }
   </style>
 </head>
@@ -115,17 +136,25 @@
   <div class="container">
     <h1>Instrucciones de Pago</h1>
     <ol>
-      <li>Para realizar el pago con <strong>YAPE</strong> deberá hacerlo al número 
+      <li>Realice el pago con <strong>YAPE</strong> al número 
         <strong class="copy-phone" onclick="copyPhone()">952674349</strong>.
       </li>
-      <li>Deberá abonar la cantidad de <strong>S/. 60.00</strong>.</li>
-      <li>Deberá consignar sus <strong>nombres y apellidos</strong> y su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> si es externo.</li>
-      <li>Remitir la constancia al correo <strong>jornadassegundas@gmail.com</strong>.</li>
+      <li>Monto a abonar: <strong>S/. 60.00</strong>.</li>
+      <li>Incluya en su mensaje: <strong>nombres y apellidos</strong>, su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> (si es externo).</li>
+      <li>Adjunte la <strong>foto o captura del comprobante de pago</strong>.</li>
+      <li>Envíe esta información al correo: <strong>jornadassegundas@gmail.com</strong>.</li>
     </ol>
+
+    <!-- Botón para abrir el correo -->
+    <a 
+      class="email-btn"
+      href="mailto:jornadassegundas@gmail.com?subject=Constancia%20de%20Pago%20Yape%20-%20Jornadas%20FADE&body=Estimados,%0D%0A%0D%0AAdjunto mi comprobante de pago de Yape.%0D%0A%0D%0A🔹 Nombre y Apellido:%0D%0A🔹 Código Universitario o DNI:%0D%0A%0D%0A(Adjuntar captura o foto del pago aquí)%0D%0A%0D%0AGracias.%0D%0A"
+    >
+      Enviar constancia por correo
+    </a>
 
     <footer>© 2025 Universidad Privada de Tacna</footer>
 
-    <!-- Mensaje de confirmación -->
     <div id="toast" class="toast">Número copiado al portapapeles 📋</div>
   </div>
 
@@ -143,3 +172,4 @@
   </script>
 </body>
 </html>
+

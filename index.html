@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instrucciones de Pago - Yape</title>
+  <title>Instrucciones de Pago - Jornadas de Derecho Civil</title>
   <style>
     * {
       box-sizing: border-box;
@@ -27,7 +27,7 @@
       padding: 30px 25px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      max-width: 500px;
+      max-width: 550px;
       width: 100%;
       text-align: center;
       position: relative;
@@ -39,6 +39,16 @@
       font-size: 1.8rem;
     }
 
+    h2 {
+      color: #444;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      text-align: left;
+      border-left: 4px solid #0066cc;
+      padding-left: 8px;
+    }
+
     ol {
       text-align: left;
       margin-left: 20px;
@@ -47,7 +57,7 @@
     }
 
     li {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       font-size: 1.05rem;
     }
 
@@ -55,7 +65,6 @@
       color: #000;
     }
 
-    /* Número clickeable */
     .copy-phone {
       color: #0066cc;
       cursor: pointer;
@@ -79,6 +88,7 @@
       font-size: 1rem;
       transition: background 0.3s ease;
       margin-top: 15px;
+      cursor: pointer;
     }
 
     .email-btn:hover {
@@ -92,7 +102,7 @@
       color: #666;
     }
 
-    /* Toast (mensaje de confirmación) */
+    /* Toast */
     .toast {
       position: absolute;
       bottom: -50px;
@@ -113,7 +123,6 @@
       opacity: 1;
     }
 
-    /* Responsividad */
     @media (max-width: 600px) {
       .container {
         padding: 20px;
@@ -137,23 +146,31 @@
 <body>
   <div class="container">
     <h1>Instrucciones de Pago</h1>
+
+    <h2>💳 Opción 1: Pasarela de Pagos (recomendada)</h2>
     <ol>
-      <li>Realice el pago con <strong>YAPE</strong> al número 
+      <li>Ingrese a la pasarela de pagos de la Universidad.</li>
+      <li>Busque el código: <strong>15996 - "Jornadas de Derecho Civil"</strong>.</li>
+      <li>Realice el pago correspondiente de <strong>S/. 60.00</strong>.</li>
+    </ol>
+
+    <h2>📱 Opción 2: Pago por Yape (alternativo)</h2>
+    <ol>
+      <li>Si no puede realizar el pago por pasarela, hágalo por <strong>YAPE</strong> al número 
         <strong class="copy-phone" onclick="copyPhone()">952674349</strong>.
       </li>
       <li>Monto a abonar: <strong>S/. 60.00</strong>.</li>
-      <li>Incluya en su mensaje: <strong>nombres y apellidos</strong>, su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> (si es externo).</li>
-      <li>Adjunte la <strong>foto o captura del comprobante de pago</strong>.</li>
-      <li>Luego presione el siguiente botón para redactar el correo:</li>
     </ol>
 
-    <!-- Botón universal de correo -->
-    <a 
-      class="email-btn"
-      href="mailto:jornadassegundas@gmail.com?subject=Constancia%20de%20Pago%20Yape%20-%20Jornadas%20FADE&body=Estimados,%0D%0A%0D%0AAdjunto mi comprobante de pago de Yape.%0D%0A%0D%0A🔹 Nombre y Apellido:%0D%0A🔹 Código Universitario o DNI:%0D%0A%0D%0A(Adjuntar aquí la captura o foto del pago antes de enviar)%0D%0A%0D%0ASaludos cordiales.%0D%0A"
-    >
-      Redactar correo de envío
-    </a>
+    <h2>🧾 Envío de Comprobante</h2>
+    <ol>
+      <li>Incluya en el mensaje: <strong>nombres y apellidos</strong>, su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> (si es externo).</li>
+      <li>Adjunte la <strong>foto o captura del comprobante de pago</strong>.</li>
+      <li>Envíe toda esta información al correo: <strong>jornadassegundas@gmail.com</strong>.</li>
+    </ol>
+
+    <!-- Botón universal -->
+    <button class="email-btn" onclick="openEmail()">📧 Redactar correo de envío</button>
 
     <footer>© 2025 Universidad Privada de Tacna</footer>
 
@@ -170,6 +187,34 @@
       }).catch(err => {
         alert("No se pudo copiar el número: " + err);
       });
+    }
+
+    function openEmail() {
+      const subject = encodeURIComponent("Constancia de Pago - Jornadas de Derecho Civil");
+      const body = encodeURIComponent(
+        "Estimados,\n\nAdjunto mi comprobante de pago.\n\n🔹 Nombre y Apellido:\n🔹 Código Universitario o DNI:\n\n(Adjuntar aquí la captura o foto del pago antes de enviar)\n\nSaludos cordiales."
+      );
+      const email = "jornadassegundas@gmail.com";
+
+      // Detectar si es móvil o escritorio
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // Móviles abren directamente la app de correo
+        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+      } else {
+        // Escritorio: intentar abrir Gmail web
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+        const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${email}&subject=${subject}&body=${body}`;
+        
+        // Verificar si Gmail está disponible (si no, usar mailto)
+        const win = window.open(gmailUrl, "_blank");
+        setTimeout(() => {
+          if (!win || win.closed || typeof win.closed === "undefined") {
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+          }
+        }, 1500);
+      }
     }
   </script>
 </body>

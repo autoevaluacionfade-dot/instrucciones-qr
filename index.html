@@ -5,26 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Instrucciones de Pago - Yape</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      line-height: 1.6;
-      background-color: #f9f9f9;
-      color: #333;
+    /* --- Estilos generales --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #f9f9f9);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
     h1 {
       color: #0066cc;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
     }
-    p {
-      margin-bottom: 10px;
+
+    ol {
+      margin-left: 20px;
+      line-height: 1.6;
+    }
+
+    li {
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+    }
+
+    strong {
+      color: #000;
+    }
+
+    footer {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* --- Responsividad --- */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      li {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Instrucciones de Pago</h1>
-  <p>1. Para realizar el pago con YAPE deberá realizarlo al número <strong>952674349</strong>.</p>
-  <p>2. Deberá abonar la cantidad de <strong>S/. 60.00</strong>.</p>
-  <p>3. Deberá consignar sus nombres y apellidos y su código universitario (si es estudiante) o su DNI si es externo.</p>
-  <p>4. Remitir la constancia al correo <strong>ryufra@virtual.upt.pe</strong> o al WhatsApp <strong>952674349</strong>.</p>
+  <div class="container">
+    <h1>Instrucciones de Pago</h1>
+    <ol>
+      <li>Para realizar el pago con <strong>YAPE</strong> deberá hacerlo al número <strong>952674349</strong>.</li>
+      <li>Deberá abonar la cantidad de <strong>S/. 60.00</strong>.</li>
+      <li>Deberá consignar sus <strong>nombres y apellidos</strong> y su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> si es externo.</li>
+      <li>Remitir la constancia al correo <strong>ryufra@virtual.upt.pe</strong> o al WhatsApp <strong>952674349</strong>.</li>
+    </ol>
+    <footer>© 2025 Universidad Privada de Tacna</footer>
+  </div>
 </body>
 </html>

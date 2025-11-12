@@ -159,8 +159,13 @@
       <li>Si no puede realizar el pago por pasarela, hágalo por <strong>YAPE</strong> al número 
         <strong class="copy-text" onclick="copyText('952674349')">952674349</strong>.
       </li>
-      <li>Monto a abonar: <strong>S/. 60.00</strong>.</li>
+      <li>Incluya en el mensaje del Yape: <strong>nombres y apellidos</strong>, su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> (si es externo).</li>
       <li>Después de realizar el pago, debe enviar el comprobante por correo.</li>
+      <li>Monto a abonar: <strong>S/. 60.00</strong>.</li>
+    </ol>
+
+    <h2>🧾 Envío de Comprobante (solo si pagó por Yape)</h2>
+    <ol>
       <li>Incluya en el mensaje: <strong>nombres y apellidos</strong>, su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> (si es externo).</li>
       <li>Adjunte la <strong>foto o captura del comprobante de pago</strong>.</li>
       <li>Envíe la información al correo: 
@@ -193,7 +198,7 @@
       const subject = encodeURIComponent("Comprobante de pago - Jornadas de Derecho Civil");
       const body = encodeURIComponent(
         "Estimados,\n\nAdjunto la captura de mi comprobante de pago por Yape.\n\n" +
-        "🔹 Nombres y Apellidos (Para el certificado):\n" +
+        "🔹 Nombre y Apellido:\n" +
         "🔹 Código Universitario o DNI:\n\n" +
         "(Adjuntar la imagen del pago antes de enviar)\n\nSaludos cordiales."
       );

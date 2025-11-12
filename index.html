@@ -30,6 +30,7 @@
       max-width: 500px;
       width: 100%;
       text-align: center;
+      position: relative;
     }
 
     h1 {
@@ -54,29 +55,16 @@
       color: #000;
     }
 
-    /* Botón de WhatsApp */
-    .whatsapp-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #25d366;
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: background 0.3s ease;
+    /* Teléfono clickeable */
+    .copy-phone {
+      color: #0066cc;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.2s ease;
     }
 
-    .whatsapp-btn:hover {
-      background-color: #1ebe5d;
-    }
-
-    .whatsapp-btn img {
-      width: 22px;
-      height: 22px;
-      margin-right: 8px;
+    .copy-phone:hover {
+      color: #004c99;
     }
 
     footer {
@@ -84,6 +72,27 @@
       text-align: center;
       font-size: 0.9rem;
       color: #666;
+    }
+
+    /* Toast (mensaje de confirmación) */
+    .toast {
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
+
+    .toast.show {
+      bottom: 20px;
+      opacity: 1;
     }
 
     /* Responsividad */
@@ -99,11 +108,6 @@
       li {
         font-size: 1rem;
       }
-
-      .whatsapp-btn {
-        font-size: 0.95rem;
-        padding: 10px 18px;
-      }
     }
   </style>
 </head>
@@ -111,24 +115,31 @@
   <div class="container">
     <h1>Instrucciones de Pago</h1>
     <ol>
-      <li>Para realizar el pago con <strong>YAPE</strong> deberá hacerlo al número <strong>952674349</strong>.</li>
+      <li>Para realizar el pago con <strong>YAPE</strong> deberá hacerlo al número 
+        <strong class="copy-phone" onclick="copyPhone()">952674349</strong>.
+      </li>
       <li>Deberá abonar la cantidad de <strong>S/. 60.00</strong>.</li>
       <li>Deberá consignar sus <strong>nombres y apellidos</strong> y su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> si es externo.</li>
-      <li>Remitir la constancia al correo <strong>jornadassegundas@gmail.com</strong> o al WhatsApp <strong>952674349</strong>.</li>
+      <li>Remitir la constancia al correo <strong>jornadassegundas@gmail.com</strong>.</li>
     </ol>
 
-    <!-- Botón de WhatsApp -->
-    <a 
-      class="whatsapp-btn" 
-      href="https://wa.me/51952674349?text=Hola%2C+adjunto+mi+constancia+de+Yape+para+validar+mi+pago." 
-      target="_blank"
-    >
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"> 
-      Enviar por WhatsApp
-    </a>
-
     <footer>© 2025 Universidad Privada de Tacna</footer>
+
+    <!-- Mensaje de confirmación -->
+    <div id="toast" class="toast">Número copiado al portapapeles 📋</div>
   </div>
+
+  <script>
+    function copyPhone() {
+      const phoneNumber = "952674349";
+      navigator.clipboard.writeText(phoneNumber).then(() => {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
+      }).catch(err => {
+        alert("No se pudo copiar el número: " + err);
+      });
+    }
+  </script>
 </body>
 </html>
-

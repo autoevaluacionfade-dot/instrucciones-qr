@@ -65,14 +65,14 @@
       color: #000;
     }
 
-    .copy-phone {
+    .copy-text {
       color: #0066cc;
       cursor: pointer;
       text-decoration: underline;
       transition: color 0.2s ease;
     }
 
-    .copy-phone:hover {
+    .copy-text:hover {
       color: #004c99;
     }
 
@@ -157,17 +157,15 @@
     <h2>📱 Opción 2: Pago por Yape (alternativo)</h2>
     <ol>
       <li>Si no puede realizar el pago por pasarela, hágalo por <strong>YAPE</strong> al número 
-        <strong class="copy-phone" onclick="copyPhone()">952674349</strong>.
+        <strong class="copy-text" onclick="copyText('952674349')">952674349</strong>.
       </li>
       <li>Monto a abonar: <strong>S/. 60.00</strong>.</li>
       <li>Después de realizar el pago, debe enviar el comprobante por correo.</li>
-    </ol>
-
-    <h2>🧾 Envío de Comprobante (solo si pagó por Yape)</h2>
-    <ol>
       <li>Incluya en el mensaje: <strong>nombres y apellidos</strong>, su <strong>código universitario</strong> (si es estudiante) o su <strong>DNI</strong> (si es externo).</li>
       <li>Adjunte la <strong>foto o captura del comprobante de pago</strong>.</li>
-      <li>Envíe la información al correo: <strong>jornadassegundas@gmail.com</strong>.</li>
+      <li>Envíe la información al correo: 
+        <strong class="copy-text" onclick="copyText('jornadassegundas@gmail.com')">jornadassegundas@gmail.com</strong>.
+      </li>
     </ol>
 
     <!-- Botón universal para redactar correo -->
@@ -175,18 +173,18 @@
 
     <footer>© 2025 Universidad Privada de Tacna</footer>
 
-    <div id="toast" class="toast">Número copiado al portapapeles 📋</div>
+    <div id="toast" class="toast">Texto copiado al portapapeles 📋</div>
   </div>
 
   <script>
-    function copyPhone() {
-      const phoneNumber = "952674349";
-      navigator.clipboard.writeText(phoneNumber).then(() => {
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
         const toast = document.getElementById("toast");
+        toast.textContent = `"${text}" copiado al portapapeles 📋`;
         toast.classList.add("show");
         setTimeout(() => toast.classList.remove("show"), 2000);
       }).catch(err => {
-        alert("No se pudo copiar el número: " + err);
+        alert("No se pudo copiar: " + err);
       });
     }
 
@@ -204,10 +202,8 @@
       const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
       if (isMobile) {
-        // En móviles, abre el cliente de correo directamente
         window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
       } else {
-        // En PC, intentar abrir Gmail Web, y si no funciona, usa mailto
         const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
         const win = window.open(gmailUrl, "_blank");
 
@@ -221,4 +217,5 @@
   </script>
 </body>
 </html>
+
 
